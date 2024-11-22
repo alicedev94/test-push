@@ -1,5 +1,22 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
+import { onMounted } from 'vue'
+
+import { send } from 'i11rzed3m';
+
+onMounted(async () => {
+  let message = {
+    title: "Título de la notificación en VueClinet",
+    body: "Cuerpo de la notificación en VueClinet",
+  };
+
+  try {
+    const response = await send('http://localhost:3000', message, 'BOj7mhqma4xxLqDH1bwkWCR-9MbuJsoA9Q9J0Y0mtjZ7MGWsM_h5183Lz2Q-sS8J-zPYATq-rXHPcud1THQoZ08');
+    console.log('Notificación enviada:', response);
+  } catch (error) {
+    console.error('Error al enviar la notificación:', error);
+  }
+});
 </script>
 
 <template>
